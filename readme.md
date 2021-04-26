@@ -1,7 +1,7 @@
 # Личный проект «Типотека» [![Build status][travis-image]][travis-url]
 
-* Студент: [Екатерина Баркова](https://up.htmlacademy.ru/nodejs/3/user/672853).
-* Наставник: `Неизвестно`.
+- Студент: [Екатерина Баркова](https://up.htmlacademy.ru/nodejs/3/user/672853).
+- Наставник: `Владимир Якушкин`.
 
 ---
 
