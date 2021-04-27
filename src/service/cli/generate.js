@@ -16,17 +16,28 @@ const {
   FILE_NAME,
   TITLES,
   ANNOUNCE,
+  MAX_ANNOUNCE_LENGTH,
   CATEGORIES,
   DateRestrict,
 } = require(`./cliConstants`);
 
+const getShuffledArray = (array, maxLength) => {
+  return shuffle(array).slice(0, getRandomInt(1, maxLength));
+};
+
+const formatedTimestamp = (ISODate)=> {
+  const date = ISODate.toISOString().split(`T`)[0];
+  const time = ISODate.toTimeString().split(` `)[0];
+  return `${date} ${time}`;
+};
+
 const generateOffers = (count) => {
   return Array(count).fill({}).map(() => ({
     title: TITLES[getRandomInt(0, TITLES.length - 1)],
-    createdDate: new Date(getRandomInt(DateRestrict.MIN, DateRestrict.MAX)),
-    announce: shuffle(ANNOUNCE).slice(1, 5).join(` `),
-    fullText: shuffle(ANNOUNCE).slice(1, getRandomInt(1, ANNOUNCE.length - 1)).join(` `),
-    category: CATEGORIES[getRandomInt(0, CATEGORIES.length - 1)],
+    createdDate: formatedTimestamp(new Date(getRandomInt(DateRestrict.MIN, DateRestrict.MAX))),
+    announce: getShuffledArray(ANNOUNCE, MAX_ANNOUNCE_LENGTH).join(` `),
+    fullText: getShuffledArray(ANNOUNCE, ANNOUNCE.length).join(` `),
+    category: getShuffledArray(CATEGORIES, CATEGORIES.length),
   }));
 
 };
