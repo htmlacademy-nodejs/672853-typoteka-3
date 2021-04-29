@@ -54,9 +54,11 @@ const CATEGORIES = [
   `Железо`,
 ];
 
+const MONTH_OFFSET = 3;
+
 const getDateRestrict = () => {
   const maxDate = new Date();
-  const minDate = new Date().setMonth(maxDate.getMonth() - 3);
+  const minDate = new Date().setMonth(maxDate.getMonth() - MONTH_OFFSET);
   return {
     MIN: minDate,
     MAX: maxDate.getTime(),

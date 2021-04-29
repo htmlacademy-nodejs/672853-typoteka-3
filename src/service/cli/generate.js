@@ -26,8 +26,8 @@ const getShuffledArray = (array, maxLength) => {
 };
 
 const formatedTimestamp = (ISODate)=> {
-  const date = ISODate.toISOString().split(`T`)[0];
-  const time = ISODate.toTimeString().split(` `)[0];
+  const date = ISODate.toLocaleDateString(`ru`);
+  const time = ISODate.toLocaleTimeString(`ru`);
   return `${date} ${time}`;
 };
 
