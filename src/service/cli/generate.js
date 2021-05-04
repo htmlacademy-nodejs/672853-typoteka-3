@@ -15,10 +15,10 @@ const {
 const {
   DEFAULT_COUNT,
   FILE_NAME,
-  TITLES,
-  ANNOUNCE,
   MAX_ANNOUNCE_LENGTH,
-  CATEGORIES,
+  FILE_SENTENCES_PATH,
+  FILE_TITLES_PATH,
+  FILE_CATEGORIES_PATH,
   DateRestrict,
 } = require(`./cliConstants`);
 
@@ -32,15 +32,24 @@ const formatedTimestamp = (ISODate)=> {
   return `${date} ${time}`;
 };
 
-const generateOffers = (count) => {
+const generateOffers = (count, titles, categories, sentences) => {
   return Array(count).fill({}).map(() => ({
-    title: TITLES[getRandomInt(0, TITLES.length - 1)],
+    title: titles[getRandomInt(0, titles.length - 1)],
     createdDate: formatedTimestamp(new Date(getRandomInt(DateRestrict.MIN, DateRestrict.MAX))),
-    announce: getShuffledArray(ANNOUNCE, MAX_ANNOUNCE_LENGTH).join(` `),
-    fullText: getShuffledArray(ANNOUNCE, ANNOUNCE.length).join(` `),
-    category: getShuffledArray(CATEGORIES, CATEGORIES.length),
+    announce: getShuffledArray(sentences, MAX_ANNOUNCE_LENGTH).join(` `),
+    fullText: getShuffledArray(sentences, sentences.length).join(` `),
+    category: getShuffledArray(categories, categories.length),
   }));
+};
 
+const readContent = async (filePath) => {
+  try {
+    const content = await fs.readFile(filePath, `utf8`);
+    return content.trim().split(`\n`);
+  } catch (err) {
+    console.error(chalk.red(err));
+    return [];
+  }
 };
 
 const writeFile = async (content) => {
@@ -53,17 +62,21 @@ const writeFile = async (content) => {
   }
 };
 
-const generateMockData = (args) => {
+const generateMockData = async (args, titles, categories, sentences) => {
   const [count] = args;
   const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
-  return JSON.stringify(generateOffers(countOffer));
+  return JSON.stringify(generateOffers(countOffer, titles, categories, sentences));
 
 };
 
 module.exports = {
   name: `--generate`,
-  run(args) {
-    const data = generateMockData(args);
+  async run(args) {
+    const sentences = await readContent(FILE_SENTENCES_PATH);
+    const titles = await readContent(FILE_TITLES_PATH);
+    const categories = await readContent(FILE_CATEGORIES_PATH);
+    const data = await generateMockData(args, titles, categories, sentences);
+
     writeFile(data);
   }
 };
