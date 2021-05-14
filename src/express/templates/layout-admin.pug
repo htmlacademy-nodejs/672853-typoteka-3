@@ -11,8 +11,8 @@ html(lang='ru')
     link(rel='preload' href='./fonts/SFProDisplay-Regular.woff2' as='font' crossorigin='anonymous')
     link(rel='stylesheet' href='css/style.min.css')
   body
-    .wrapper
-      include partials/header.pug
+    .wrapper.wrapper--nobackground
+      include partials/header-admin.pug
       block content
       include partials/footer.pug
     script(src='js/vendor.js')
