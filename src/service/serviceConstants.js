@@ -6,8 +6,11 @@ const FILE_NAME = `mocks.json`;
 const FILE_SENTENCES_PATH = `./data/sentences.txt`;
 const FILE_TITLES_PATH = `./data/titles.txt`;
 const FILE_CATEGORIES_PATH = `./data/categories.txt`;
+const FILE_COMMENTS_PATH = `./data/comments.txt`;
 
 const MAX_ANNOUNCE_LENGTH = 5;
+const MAX_ID_LENGTH = 6;
+const MAX_COMMENTS = 4;
 
 const MONTH_OFFSET = 3;
 
@@ -30,5 +33,8 @@ module.exports = {
   FILE_SENTENCES_PATH,
   FILE_TITLES_PATH,
   FILE_CATEGORIES_PATH,
+  FILE_COMMENTS_PATH,
+  MAX_ID_LENGTH,
+  MAX_COMMENTS,
   DateRestrict,
 };

@@ -9,6 +9,8 @@ const ExitCode = {
   success: 0,
 };
 
+const API_PREFIX = `/api`;
+
 const HttpCode = {
   OK: 200,
   CREATED: 201,
@@ -31,5 +33,6 @@ module.exports = {
   HttpCode,
   DEFAULT_PORT,
   MOCKS_SOURCE,
+  API_PREFIX,
   NOT_FOUND_MESSAGE_TEXT
 };
