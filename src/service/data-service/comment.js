@@ -5,24 +5,28 @@ const {MAX_ID_LENGTH} = require(`../serviceConstants`);
 
 class CommentService {
   create(article, comment) {
-    const newComment = Object.assign({
+    const newComment = {
+      ...comment,
       id: nanoid(MAX_ID_LENGTH),
-    }, comment);
+    };
 
-    article.comments.push(newComment);
+    article.comments = [
+      ...article.comments,
+      newComment
+    ];
     return comment;
   }
 
   drop(article, commentId) {
     const dropComment = article.comments
-      .find((item) => item.id === commentId);
+      .find(({id}) => id === commentId);
 
     if (!dropComment) {
       return null;
     }
 
     article.comments = article.comments
-      .filter((item) => item.id !== commentId);
+      .filter(({id}) => id !== commentId);
 
     return dropComment;
   }

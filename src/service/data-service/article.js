@@ -12,7 +12,10 @@ class ArticleService {
     const newArticle = Object
       .assign({id: nanoid(MAX_ID_LENGTH), comments: []}, article);
 
-    this._articles.push(newArticle);
+    this._articles = [
+      ...this._articles,
+      newArticle
+    ];
     return newArticle;
   }
 
@@ -42,7 +45,10 @@ class ArticleService {
   update(id, article) {
     const oldArticle = this.find(id);
 
-    return Object.assign(oldArticle, article);
+    return {
+      ...oldArticle,
+      ...article
+    };
   }
 
 }
