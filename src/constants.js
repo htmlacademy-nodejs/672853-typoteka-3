@@ -25,6 +25,11 @@ const DEFAULT_PORT = 3000;
 const MOCKS_SOURCE = `mocks.json`;
 const NOT_FOUND_MESSAGE_TEXT = `Not found`;
 
+const Env = {
+  DEVELOPMENT: `development`,
+  PRODUCTION: `production`
+};
+
 module.exports = {
   DEFAULT_COMMAND,
   USER_ARGV_INDEX,
@@ -34,5 +39,6 @@ module.exports = {
   DEFAULT_PORT,
   MOCKS_SOURCE,
   API_PREFIX,
-  NOT_FOUND_MESSAGE_TEXT
+  NOT_FOUND_MESSAGE_TEXT,
+  Env
 };
