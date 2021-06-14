@@ -46,9 +46,14 @@ class ArticleService {
   }
 
   update(id, newArticle) {
-    let article = this.find(id);
+    this._articles = this._articles.map((article) => article.id === id ? {
+      ...article,
+      ...newArticle,
+    } : article);
 
-    return Object.assign(article, newArticle);
+    const article = this.find(id);
+
+    return article;
   }
 
 }
