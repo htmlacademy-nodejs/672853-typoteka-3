@@ -34,13 +34,13 @@ CREATE TABLE categories(
 );
 
 CREATE TABLE articles_categories(
-  articles_id integer NOT NULL,
+  article_id integer NOT NULL,
   category_id integer NOT NULL,
-  PRIMARY KEY (articles_id, category_id),
-  FOREIGN KEY (articles_id) REFERENCES articles(id)
+  PRIMARY KEY (article_id, category_id),
+  FOREIGN KEY (article_id) REFERENCES articles(id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  FOREIGN KEY (articles_id) REFERENCES categories(id)
+  FOREIGN KEY (article_id) REFERENCES categories(id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
