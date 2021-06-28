@@ -25,6 +25,7 @@ const getDateRestrict = () => {
 
 const DateRestrict = getDateRestrict();
 
+const FILL_DB_SQL = `fill-db.sql`;
 
 module.exports = {
   DEFAULT_COUNT,
@@ -37,4 +38,5 @@ module.exports = {
   MAX_ID_LENGTH,
   MAX_COMMENTS,
   DateRestrict,
+  FILL_DB_SQL
 };
